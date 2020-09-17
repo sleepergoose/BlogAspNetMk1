@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href="~/Content/Site.css" type="text/css">
+    @RenderSection("head", required: false)
+
+
+
+</head>
+<body>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <div id="maindiv">
+
+        <!-- HEADER -->
+        <header id="header">
+            <h1 id="logo">@Html.ActionLink("Programmer's Blog", "Index", "Home", null, null)</h1>
+            <p id="logo-description">programming and algorithms</p>
+        </header>
+
+        <!-- NAVIGATION -->
+        <div class="nav">
+            <div class="dropdown">
+                @Html.ActionLink("Blogs", "Index", "Home", null, new { @class = "dropbtn" })
+                <div class="dropdown-context">
+                    @Html.ActionLink("CSharp", "ShowCategory", "Home", new { category = "CSharp" }, null)
+                    @Html.ActionLink("ASP NET", "ShowCategory", "Home", new { category = "ASP_NET" }, null)
+                    @Html.ActionLink("SQL", "ShowCategory", "Home", new { category = "SQL" }, null)
+                    @Html.ActionLink("Entity Framework", "ShowCategory", "Home", new { category = "Entity_Framework" }, null)
+                    @Html.ActionLink("Other", "ShowCategory", "Home", new { category = "Other" }, null)
+                </div>
+            </div>
+
+            @Html.ActionLink("Books", "ShowBooks", "Home", null, new { @class = "menuitem" })
+            @Html.ActionLink("About Me", "ShowAboutMe", "Home", null, new { @class = "menuitem" })
+
+            <div class="dropdown">
+                @Html.ActionLink("Profiles", "Profiles", null, new { @class = "dropbtn" })
+                <div class="dropdown-context">
+                    @Html.ActionLink("Add Article", "AddArticle", "ArticleHolding", null, null)
+                    @Html.ActionLink("Edit Article", "EditArticle", "ArticleHolding", null, null)
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        @RenderBody()
+
+
+        <!-- FOOTER -->
+        <div id="footer">
+            <p>&copy; @DateTime.Now.Year - Pogrammer's Blog - All Rights reserved</p>
+        </div>
+    </div>
+
+</body>
+</html>

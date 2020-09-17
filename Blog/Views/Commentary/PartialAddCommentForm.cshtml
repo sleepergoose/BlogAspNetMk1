@@ -1,0 +1,64 @@
+﻿@model  Blog.Models.Comment
+
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $(document).on("keyup", ".comment-add-form-textarea", function () {
+                var count = $(".comment-add-form-textarea").val().length;
+                var label = $("#counter-label");
+                if (count >= 400) {
+                    var txt = $(".comment-add-form-textarea").val().substr(0, 400);
+                    $(".comment-add-form-textarea").val(txt);
+                }
+                label.text("Текст сообщения (не более 400 символов). Осталось - " + (400 - count) + " символов");
+            });
+        });
+
+    function OnSuccessClearFields() {
+        $(".comment-add-form-textarea").val("");
+        $(".comment-add-form-textbox").val("");
+    }
+
+</script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<br />
+<br />
+<br />
+
+@using (Ajax.BeginForm("AddCommentary", "Commentary", new { ArticleId = ViewBag.ArticleId },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "commentary-section-allcomments",
+                            InsertionMode = InsertionMode.InsertBefore,
+                            HttpMethod = "Post",
+                            OnSuccess = "OnSuccessClearFields"
+
+                        }, new { @class = "comment-add-form" }))
+{
+    @Html.ValidationSummary(true)
+    <div class="editor-label">
+        @Html.LabelFor(m => m.User, "Введите свое имя", new { @class = "comment-add-form-label" })
+    </div>
+    <br />
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.User, new { @class = "comment-add-form-textbox" })
+        @Html.ValidationMessageFor(model => model.User)
+    </div>
+    <br />
+    <br />
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Text, "Текст сообщения (не более 400 символов)", new { id = "counter-label", @class = "comment-add-form-label" })
+    </div>
+    <br />
+    <div class="editor-field">
+        @Html.TextAreaFor(m => m.Text, new { @class = "comment-add-form-textarea" })
+        @Html.ValidationMessageFor(model => model.Text)
+    </div>
+    <br />
+    <br />
+
+    <input on type="submit" name="submit" value="Отправить" class="comment-add-form-submit" />
+}

@@ -1,0 +1,13 @@
+﻿@model Blog.Models.Article
+@using Blog.Models
+
+@{
+    ViewBag.Title = "EditArticle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>EditArticle</h2>
+
+<div id="replace">
+    @Ajax.ActionLink("Click Me", "EditArticle", new { Id = 17  }, new AjaxOptions { UpdateTargetId = "replace", HttpMethod = "Post" })
+</div>

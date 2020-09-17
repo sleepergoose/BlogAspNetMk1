@@ -1,0 +1,47 @@
+﻿@model Blog.Models.Article
+@using Blog.Models
+
+
+<div>
+
+    @using (Html.BeginForm("EditArticle", "ArticleHolding", FormMethod.Post, new { @class = "article-load-form" }))
+    {
+        <h2 class="caption">Добавить статью</h2>
+        @Html.ValidationSummary(true)
+
+        @Html.LabelFor(m => m.Title, "Введите название статьи", new { @class = "article-load-label" })
+        <br />
+        @Html.TextBoxFor(m => m.Title, new { @class = "article-load-textbox" })
+        @Html.ValidationMessageFor(m => m.Title)
+        <br /><br />
+        @Html.LabelFor(m => m.Author, "Введите имя автора статьи", new { @class = "article-load-label" })
+        <br />
+        @Html.TextBoxFor(m => m.Author, new { @class = "article-load-textbox" })
+        @Html.ValidationMessageFor(m => m.Author)
+        <br /><br />
+        @Html.LabelFor(m => m.Category, "Введите категорию статьи", new { @class = "article-load-label" })
+        <br />
+        @Html.DropDownListFor(m => m.Category, new SelectList(Enum.GetValues(typeof(Category))), "Select Category", new { @class = "article-load-dropdown" })
+        @Html.ValidationMessageFor(m => m.Category)
+        <br /><br />
+        @Html.LabelFor(m => m.ShortDescription, "Введите краткое описание статьи без HTML тегов (не более 400 символов)", new { @class = "article-load-label" })
+        <br />
+        @Html.TextAreaFor(m => m.ShortDescription, new { rows = "10", @class = "article-load-textarea" })
+        @Html.ValidationMessageFor(m => m.ShortDescription)
+        <br /><br />
+
+        @Html.LabelFor(m => m.Text, "Введите текст статьи с HTML тегами", new { @class = "article-load-label" })
+        <br />
+        @Html.TextAreaFor(m => m.Text, new { rows = "20", @class = "article-load-textarea" })
+        @Html.ValidationMessageFor(m => m.Text)
+        <br /><br />
+
+        <input type="submit" name="submit" value="Сохранить" class="article-load-btn" />
+
+    }
+</div>
+
+
+
+
+

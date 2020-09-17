@@ -1,0 +1,53 @@
+﻿@model Blog.Models.Article
+
+@{
+    ViewBag.Title = "ReadMore";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<!-- HELPERS -->
+@helper ShowFullArticle()
+{
+    <div class="noteitem">
+        <h1 class="noteitem-title"><a href="#">@Model.Title</a></h1>
+        <aside class="noteitem-aside">
+            <span class="noteitem-aside-date"><a href="#">Date: @Model.Date.ToShortDateString()</a></span> |
+            <span class="noteitem-aside-author"><a href="#">Author: @Model.Author</a></span> |
+            <span class="noteitem-aside-category"><a href="#">Category: @Model.Category</a></span>
+        </aside>
+        <br />
+        <div class="readmore-noteitem-article">
+            @Html.Raw(Model.Text)
+        </div>
+        <br>
+    </div>
+}
+
+@helper ShowComment()
+{
+    using (Blog.Models.BlogDbContext blogDbContext = new Blog.Models.BlogDbContext())
+    {
+        IEnumerable<Blog.Models.Comment> comments = blogDbContext.Comments.Where(i => i.ArticleId == Model.Id).OrderByDescending(i => i.Id).ToList();
+        foreach (Blog.Models.Comment item in comments)
+        {
+            Html.RenderPartial("~/Views/Commentary/PartialAppendComment.cshtml", item);
+        }
+    }
+}
+
+<!-- CONTENT -->
+@ShowFullArticle()
+<br />
+<br />
+<br />
+<div class="commentary-section">
+    <div id="commentary-section-form">
+        @Ajax.ActionLink("Написать коментарий", "WriteCommentary", "Commentary", new { ArticleId = Model.Id }, new AjaxOptions { UpdateTargetId = "commentary-section-form" })
+    </div>
+    <br />
+    <hr id="commentary-section-line" />
+    <br />
+    <div id="commentary-section-allcomments">
+        @ShowComment()
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Blog.Models.Article>
+@using System;
+@using System.Linq
+
+@using Blog.Models
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<!-- MAIN PART -->
+@helper ArticleLoad(int Id, string Title, DateTime Date, string Author, string Category, string ShortDescription)
+{
+    <div class="noteitem">
+        <h1 class="noteitem-title">@Html.ActionLink(Title, "ReadMore", "ArticleHolding", new { Id = Id }, null)</h1>
+        <aside class="noteitem-aside">
+            <span class="noteitem-aside-date"><a>Date: @Date.ToShortDateString()</a></span> |
+            <span class="noteitem-aside-author">Author: @Html.ActionLink(Author, "SelectByAuthor", "Home", new { author = Author }, null)</span> |
+            <span class="noteitem-aside-category"><a href="#">Category: @Html.ActionLink(Category, "ShowCategory", "Home", new { category = Category }, null)</a></span>
+        </aside>
+        <br />
+        <div class="noteitem-article">
+            @ShortDescription
+        </div>
+        <br>
+        <p class="noteitem-readmore">@Html.ActionLink("Read more", "ReadMore", "ArticleHolding", new { Id = Id }, null)</p>
+    </div>
+    <br />
+    <br />
+}
+
+<!-- OLD -->
+<article id="article">
+
+    @{
+        if (Model.Count() != 0)
+        {
+            foreach (var item in Model)
+            {
+                @ArticleLoad(item.Id, item.Title, item.Date, item.Author, item.Category, item.ShortDescription)
+            }
+        }
+        else
+        {
+            <h4>Nothing was found!</h4>
+        }
+    }
+</article>
+
+
+
+<!-- SIDE BAR -->
+<div id="sidebar">
+    <div class="sidebaritem">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta nulla laudantium at commodi amet, beatae ex alias adipisci nemo, praesentium explicabo sit odio repellendus ad ratione culpa, quo debitis nesciunt.
+    </div>
+</div>
