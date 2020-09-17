@@ -58,10 +58,6 @@ namespace Blog.Controllers
             }
         }
 
-        public ActionResult ShowBooks()
-        {
-            return View();
-        }
 
         public ActionResult ShowAboutMe()
         {
