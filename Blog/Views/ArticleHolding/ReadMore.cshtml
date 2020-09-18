@@ -9,11 +9,11 @@
 @helper ShowFullArticle()
 {
     <div class="noteitem">
-        <h1 class="noteitem-title"><a href="#">@Model.Title</a></h1>
+        <h1 class="noteitem-title">@Html.ActionLink(Model.Title, "ReadMore", "ArticleHolding", new { Id = Model.Id }, null)</h1>
         <aside class="noteitem-aside">
-            <span class="noteitem-aside-date"><a href="#">Date: @Model.Date.ToShortDateString()</a></span> |
-            <span class="noteitem-aside-author"><a href="#">Author: @Model.Author</a></span> |
-            <span class="noteitem-aside-category"><a href="#">Category: @Model.Category</a></span>
+            <span class="noteitem-aside-date"><a>Date: @Model.Date.ToShortDateString()</a></span> |
+            <span class="noteitem-aside-author">Author: @Html.ActionLink(Model.Author, "SelectByAuthor", "Home", new { author = Model.Author }, null)</span> |
+            <span class="noteitem-aside-category"><a href="#">Category: @Html.ActionLink(Model.Category, "ShowCategory", "Home", new { category = Model.Category }, null)</a></span>
         </aside>
         <br />
         <div class="readmore-noteitem-article">

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using Blog.Models;
 using System.Data.Entity;
+using System.Net;
 
 namespace Blog.Controllers
 {
@@ -17,6 +18,36 @@ namespace Blog.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult DeleteArticle(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            using (BlogDbContext BlogDB = new BlogDbContext())
+            {
+                Article article = BlogDB.Articles.Find(id);
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }    
+                return View(article);
+            }
+        }
+
+        [HttpPost, ActionName("DeleteArticle")]
+        public ActionResult DeleteArticle(int id)
+        {
+            using (BlogDbContext BlogDB = new BlogDbContext())
+            {
+                Article article = BlogDB.Articles.Find(id);
+                BlogDB.Articles.Remove(article);
+                BlogDB.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpGet]

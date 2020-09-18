@@ -12,20 +12,22 @@
 <!-- MAIN PART -->
 @helper ArticleLoad(int Id, string Title, DateTime Date, string Author, string Category, string ShortDescription)
 {
-    <div class="noteitem">
-        <h1 class="noteitem-title">@Html.ActionLink(Title, "ReadMore", "ArticleHolding", new { Id = Id }, null)</h1>
-        <aside class="noteitem-aside">
-            <span class="noteitem-aside-date"><a>Date: @Date.ToShortDateString()</a></span> |
-            <span class="noteitem-aside-author">Author: @Html.ActionLink(Author, "SelectByAuthor", "Home", new { author = Author }, null)</span> |
-            <span class="noteitem-aside-category"><a href="#">Category: @Html.ActionLink(Category, "ShowCategory", "Home", new { category = Category }, null)</a></span>
-        </aside>
-        <br />
-        <div class="noteitem-article">
-            @ShortDescription
-        </div>
-        <br>
-        <p class="noteitem-readmore">@Html.ActionLink("Read more", "ReadMore", "ArticleHolding", new { Id = Id }, null)</p>
+<div class="noteitem">
+    <h1 class="noteitem-title">@Html.ActionLink(Title, "ReadMore", "ArticleHolding", new { Id = Id }, null)</h1>
+    <aside class="noteitem-aside">
+        <span class="noteitem-aside-date"><a>Date: @Date.ToShortDateString()</a></span> |
+        <span class="noteitem-aside-author">Author: @Html.ActionLink(Author, "SelectByAuthor", "Home", new { author = Author }, null)</span> |
+        <span class="noteitem-aside-category"><a href="#">Category: @Html.ActionLink(Category, "ShowCategory", "Home", new { category = Category }, null)</a></span>
+    </aside>
+    <br />
+    <div class="noteitem-article">
+        @ShortDescription
     </div>
+    <br>
+        <p class="noteitem-readmore">@Html.ActionLink("Read more", "ReadMore", "ArticleHolding", new { Id = Id }, null)</p>
+        <p class="noteitem-readmore">@Html.ActionLink("Edit", "EditArticle", "ArticleHolding", new { Id = Id }, null)</p>
+        <p class="noteitem-readmore">@Html.ActionLink("Delete", "DeleteArticle", "ArticleHolding", new { Id = Id }, null)</p>
+</div>
     <br />
     <br />
 }

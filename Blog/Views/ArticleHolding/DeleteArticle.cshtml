@@ -1,0 +1,57 @@
+﻿@model Blog.Models.Article
+
+@{
+    ViewBag.Title = "DeleteArticle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .deletebook {
+        display: block;
+        padding: 20px;
+        margin: 0px auto;
+    }
+
+    .deletebook p {
+        color: #777;
+    }
+
+    #shortdescription {
+        text-align: justify;
+        text-indent: 5%;
+        color: #333;
+        line-height: 20px;
+    }
+
+    .deletebook div p {
+        display: inline-block;
+    }
+
+    .deletebook h3 span {
+        color: #777;
+        border-bottom: 1px solid #777;
+    }
+</style>
+
+<div class="deletebook">
+    <h3>Вы действительно хотите удалить книгу - <span>"@Model.Title"</span>?</h3>
+    <br />
+    <div>
+        <p>Author: @Model.Author</p> |
+        <p>Category: @Model.Category</p>
+    </div>
+    <br />
+    <p id="shortdescription">@Model.ShortDescription</p>
+    <br />
+    <br />
+    @using (Html.BeginForm("DeleteArticle", "ArticleHolding", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <input type="submit" value="Delete" class="btn" name="Delete"/> |
+            @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "backtolist" })
+        </div>
+    }
+
+</div>

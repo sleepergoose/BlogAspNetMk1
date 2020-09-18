@@ -125,9 +125,10 @@ body {
         float: right;
         width: 10%;
         text-align: center;
-        padding: 10px 20px;
+        padding: 5px 20px;
         background: #3a5b66;
         color: white;
+        margin-right: 10px;
     }
 .noteitem-readmore a:hover {
             color: black;
@@ -138,7 +139,10 @@ body {
     text-align: justify;
     text-indent: 5%;
 }
-
+.readmore-noteitem-article * {
+    font-size: 12pt;
+    font-family: Verdana;
+}
 
 /* SIDEBAR */
 #sidebar {
