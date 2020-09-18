@@ -15,6 +15,7 @@ namespace Blog.Controllers
     public class BooksController : Controller
     {
         private BlogDbContext db = new BlogDbContext();
+        static private byte[] _coverImage;
 
         // GET: Books
         public ActionResult Index()
@@ -75,6 +76,7 @@ namespace Blog.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Book book = db.Books.Find(id);
+            _coverImage = book.CoverImage;
             if (book == null)
             {
                 return HttpNotFound();
@@ -87,7 +89,7 @@ namespace Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Author,Description,CoverImage")] Book book, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "Id,Name,Author,Description")] Book book, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +99,10 @@ namespace Blog.Controllers
                     {
                         book.CoverImage = reader.ReadBytes(upload.ContentLength);
                     }
+                }
+                else
+                {
+                    book.CoverImage = _coverImage;
                 }
 
                 db.Entry(book).State = EntityState.Modified;

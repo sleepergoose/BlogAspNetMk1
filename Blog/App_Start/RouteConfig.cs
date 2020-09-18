@@ -19,8 +19,8 @@ namespace Blog
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            Route newRoute = new Route("Content/", new MvcRouteHandler());
-            routes.Add(newRoute);
+            //Route newRoute = new Route("Content/", new MvcRouteHandler());
+            //routes.Add(newRoute);
 
 
         }

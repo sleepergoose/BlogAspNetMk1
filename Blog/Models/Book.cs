@@ -29,7 +29,7 @@ namespace Blog.Models
         [Display(Name = "Описание книги")]
         public string Description { get; set; }
 
-
+        [Display(Name = "Обложка книги")]
         public byte[] CoverImage { get; set; }
     }
 }
