@@ -1,4 +1,10 @@
-﻿* {
+﻿:root {
+    --mainstyle-color: #3a5b66; /* #3a5b66 */
+    --mainstyle-activecolor: #5a7b86; /* #5a7b86 */
+    --mainstyle-subbackcolor: #7a9ba6; /* #7a9ba6 */
+}
+
+* {
     text-decoration: none;
     list-style: none;
     padding: 0px;
@@ -24,13 +30,13 @@ body {
 /* LOGO */
 #logo {
     padding-top: 20px;
-    color: #3a5b66; /* #3a5b66; */
+    color: var(--mainstyle-color); /* var(--mainstyle-color); */
     font-family: Verdana, Segoe, sans-serif;
     font-size: 2.2em;
     font-weight: bold;
 }
 #logo a {
-        color: #3a5b66;
+        color: var(--mainstyle-color);
     }
 #logo-description {
     margin-top: 5px;
@@ -45,7 +51,7 @@ body {
     display: block;
     float: left;
     width: 100%;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
 }
 .dropdown {
     display: inline-block;
@@ -70,14 +76,14 @@ body {
 .dropdown-context a {
         display: block;
         padding: 10px;
-        background: #8aabb6;
+        background: var(--mainstyle-subbackcolor);
         width: 100px;
         color: #333;
         text-align: center;
         max-width: 100px;
     }
 .dropdown-context a:hover {
-            background: #5a7b86;
+            background: var(--mainstyle-activecolor);
             color: white;
         }
 
@@ -126,7 +132,7 @@ body {
         width: 10%;
         text-align: center;
         padding: 5px 20px;
-        background: #3a5b66;
+        background: var(--mainstyle-color);
         color: white;
         margin-right: 10px;
     }
@@ -160,7 +166,7 @@ body {
     float: left;
     width: 100%;
     text-align: center;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
     margin-top: 40px;
 }
 #footer p {
@@ -203,7 +209,7 @@ input[type="checkbox"].input-validation-error {
     border: 1px solid black;
     padding: 10px 15px;
     display: block;
-    background: #7a9ba6;
+    background: var(--mainstyle-subbackcolor);
     width: 80%;
     margin: 0px auto;
 }
@@ -230,7 +236,7 @@ input[type="checkbox"].input-validation-error {
 .article-load-btn {
     border: none;
     padding: 10px 25px;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
     text-align: right;
     color: white;
     font-family: Verdana, Arial, sans-serif;
@@ -281,7 +287,7 @@ input[type="checkbox"].input-validation-error {
     font-size: 1em;
     font-family: Verdana, sans-serif;
     color: #777;
-    background: #7a9ba6;
+    background: var(--mainstyle-subbackcolor);
 }
 .comment-add-form-label {
     font-size: 0.8em;
@@ -304,14 +310,14 @@ input[type="checkbox"].input-validation-error {
     text-align: center;
     padding: 10px 15px;
     color: white;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
     border: none;
     width: 120px;
     margin: 0px auto;
     display: block;
 }
 .comment-add-form-submit:hover {
-     background: #5a7b86;
+     background: var(--mainstyle-activecolor);
      color: white;
 }
 
@@ -363,7 +369,7 @@ input[type="checkbox"].input-validation-error {
     display: inline-block;
     width: 7%;
     padding: 2px 14px;
-    background: #8aabb6;
+    background: var(--mainstyle-subbackcolor);
     color: white;
     margin: 5px 0px 5px 0px;
     text-align: center;
@@ -376,7 +382,7 @@ input[type="checkbox"].input-validation-error {
     float: right;
     width: auto;
     padding: 10px 16px;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
 }
 #create-new-btn:hover {
     color: black;
@@ -388,7 +394,7 @@ input[type="checkbox"].input-validation-error {
     display: block;
     border: 1px solid black;
     padding: 20px 10px 20px 10px;
-    background: #7a9ba6;
+    background: var(--mainstyle-subbackcolor);
 }
 .line {
     margin-bottom: 10px;
@@ -410,42 +416,37 @@ input[type="checkbox"].input-validation-error {
     border: none;
     display: block;
     margin: 0px auto;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
     color: white;
 }
 .form-group .submitbtn:hover {
     color: black;
     background: #ddd;
 }
-
-
 .dl-horizontal dt {
     color: #777;
     padding: 10px 0px 0px 0px;
 }
-
 .dl-horizontal dd {
     color: #333;
     padding: 0px 0px 10px 30px;
     text-align: justify;
 }
-
 .btn {
     border: none;
     padding: 3px 45px;
-    background: #3a5b66;
+    background: var(--mainstyle-color);
     color: white;
 }
-
 .btn:hover {
     color: black;
     background: #ddd;
 }
-
 .backtolist {
     color: #777;
 }
-
 #form-textarea {
     width: 100%;
 }
+
+
