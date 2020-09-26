@@ -16,8 +16,8 @@
     <h1 class="noteitem-title">@Html.ActionLink(Title, "ReadMore", "ArticleHolding", new { Id = Id }, null)</h1>
     <aside class="noteitem-aside">
         <span class="noteitem-aside-date"><a>Date: @Date.ToShortDateString()</a></span> |
-        <span class="noteitem-aside-author">Author: @Html.ActionLink(Author, "SelectByAuthor", "Home", new { author = Author }, null)</span> |
-        <span class="noteitem-aside-category"><a href="#">Category: @Html.ActionLink(Category, "ShowCategory", "Home", new { category = Category }, null)</a></span>
+        <span class="noteitem-aside-author"><a>Author: @Html.ActionLink(Author, "SelectByAuthor", "Home", new { author = Author }, null)</a></span> |
+        <span class="noteitem-aside-category"><a>Category: @Html.ActionLink(Category, "ShowCategory", "Home", new { category = Category }, null)</a></span>
     </aside>
     <br />
     <div class="noteitem-article">

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Roles</h2>
+<br />
+<br />
+@model IQueryable<Blog.Models.IdentityModels.AppRole>
+
+
+<table>
+    <tr>
+        <td>Role</td>
+    </tr>
+    @{ 
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+            </tr>
+        }
+    }
+</table>
+

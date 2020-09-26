@@ -399,10 +399,12 @@ input[type="checkbox"].input-validation-error {
 .line {
     margin-bottom: 10px;
 }
+
 .form-control {
     width: 100%;
     margin: 1px 0px 5px 0px;
-}
+    padding: 3px 1px 3px 1px;
+} 
 .control-label {
     margin: 10px 0px 0px 0px;
     color: #333;

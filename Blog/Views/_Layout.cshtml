@@ -28,7 +28,7 @@
 
         <!-- NAVIGATION -->
         <div class="nav">
-            <div class="dropdown">
+            <div class="dropdown ">
                 @Html.ActionLink("Blogs", "Index", "Home", null, new { @class = "dropbtn" })
                 <div class="dropdown-context">
                     @Html.ActionLink("CSharp", "ShowCategory", "Home", new { category = "CSharp" }, null)
@@ -42,12 +42,58 @@
             @Html.ActionLink("Books", "Index", "Books", null, new { @class = "menuitem" })
             @Html.ActionLink("About Me", "ShowAboutMe", "Home", null, new { @class = "menuitem" })
 
-            <div class="dropdown">
-                @Html.ActionLink("Profiles", "Profiles", null, new { @class = "dropbtn" })
-                <div class="dropdown-context">
-                    @Html.ActionLink("Add Article", "AddArticle", "ArticleHolding", null, null)
-                    @Html.ActionLink("Edit Article", "EditArticle", "ArticleHolding", null, null)
-                </div>
+
+            @{
+                if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <div class="dropdown">
+                        @Html.ActionLink("Profiles", "", "", null, new { @class = "dropbtn" })
+                        <div class="dropdown-context">
+                            @Html.ActionLink("Login", "Login", "Account", null, null)
+                            @Html.ActionLink("Register", "Register", "Account", null, null)
+                        </div>
+                    </div>
+                }
+            }
+
+
+            @{
+                if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+                {
+                    <div class="dropdown">
+                        @Html.ActionLink("Profiles", "", "", null, new { @class = "dropbtn" })
+                        <div class="dropdown-context">
+                            @Html.ActionLink("Add Article", "AddArticle", "ArticleHolding", null, null)
+                            @Html.ActionLink("Edit Article", "EditArticle", "ArticleHolding", null, null)
+                        </div>
+                    </div>
+                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "menuitem" })
+
+                }
+                else if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.IsInRole("user"))
+                {
+                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "menuitem" })
+                }
+            }
+            <div class="card-title" style="float: right;">
+                <p style="padding: 10px 25px; color: #fff">
+                    @{
+                        if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            if (HttpContext.Current.User.IsInRole("admin"))
+                            {
+                                string d = ("Administrator | " + HttpContext.Current.User.Identity.Name);
+                                @d.ToString();
+                            }
+                            else
+                            {
+                                string d = ("User | " + HttpContext.Current.User.Identity.Name);
+                                @d.ToString();
+                            }
+                        }
+                    }
+
+                </p>
             </div>
         </div>
         <br />
